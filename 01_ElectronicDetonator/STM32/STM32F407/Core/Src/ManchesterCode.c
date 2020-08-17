@@ -1,10 +1,10 @@
 /*
  * ManchesterCode.c
  *
- *  Created on: 2020年8月14日
- *      Author: Cliff
+ *  Created on: 2020-8-17 *      Author: Cliff
  */
 #include "ManchesterCode.h"
+#include <ioavr.h>
 
 uint8_t receiving = 0, databyte = 0;
 volatile uint32_t samples = 0;
@@ -90,7 +90,7 @@ void  DiffManchester_SendData   (const uint8_t* data, uint16_t bytes)
 
 	/* Send data byte for byte */
 	for (i = 0; i < bytes; ++i)
-	{ lastEnd = DiffManchester_sendByte(data[i], lastEnd); }
+	{ lastEnd = DiffManchester_SendByte(data[i], lastEnd); }
 
 	/* No more bits are sent but the last bit needs to finish delaying, otherwise if the
 	 * last bit is a one it won't be recognized because I'm turning the TX off after, which
@@ -158,8 +158,7 @@ uint8_t DiffManchester_GetData( uint8_t **data, uint8_t dataLens )
   receiving = 0;
   sampleCount = DATA_SAMPLE - 1;
   rawSamps = getSample();
-
-  //only for debug
+/*
   if( 1 == error )
   {
 	printf("error \r\n");
@@ -171,7 +170,7 @@ uint8_t DiffManchester_GetData( uint8_t **data, uint8_t dataLens )
 	}
 	printf("\r\n");
   }
-
+*/
   return error;
 }
 
@@ -201,10 +200,10 @@ void DiffManchester_ReadBit( void )
 
 void DiffManchester_EnableRead( uint8_t True )
 {
-	receiving = True;
+   receiving = True;
 }
 
 void DiffManchester_WaitForRead( void )
 {
-	while( 0 == samplesReady );
+   while( 0 == samplesReady );
 }
