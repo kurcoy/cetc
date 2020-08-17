@@ -1,3 +1,4 @@
+#include "ManchesterInit.h"
 #include "ManchesterCode.h"
 #include <ioavr.h>
 //CPU frequency = 8MHz, CLKio=1MHz
@@ -36,7 +37,7 @@ int main( void )
       lastEnd = DiffManchester_sendByte( data[i], lastEnd); 
     }
     */
-    DiffManchester_sendData( data, 25); 
+    DiffManchester_SendData( data, 25); 
     //Manchester_sendByte(databyte);
     
   
