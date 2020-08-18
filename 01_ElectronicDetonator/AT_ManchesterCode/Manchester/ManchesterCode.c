@@ -128,10 +128,9 @@ uint8_t interpretSample(uint32_t samps)
     return 1;
 }
 
-uint8_t DiffManchester_GetData( uint8_t **data, uint8_t dataLens )
+uint8_t DiffManchester_GetData( uint8_t data[CODE_BYTELENGTH], uint8_t dataLens )
 {
   uint8_t  error=1;
-  uint8_t  byte[25];
   uint32_t rawSamps;
   if( samplesReady ) //receiving
   {
@@ -143,7 +142,7 @@ uint8_t DiffManchester_GetData( uint8_t **data, uint8_t dataLens )
 		rawSamps = getSample();
 		if( interpretSample( rawSamps ))
 		{
-		  byte[i] = databyte;
+		  data[i] = databyte;
 		}
 		else
 		{
@@ -159,20 +158,6 @@ uint8_t DiffManchester_GetData( uint8_t **data, uint8_t dataLens )
   sampleCount = DATA_SAMPLE - 1;
   rawSamps = getSample();
 
-  //only for debug, using #define command
-  #ifdef MANCHESTERCODE_DEBUG
-  if( 1 == error )
-  {
-	printf("error \r\n");
-  }
-  {
-	for( uint8_t j=0;j<dataLens; j++ )
-	{
-	  printf("%x ", byte[j]);
-	}
-	printf("\r\n");
-  }
-  #endif
   return error;
 }
 
