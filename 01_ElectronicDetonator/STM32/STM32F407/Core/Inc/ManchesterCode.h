@@ -9,8 +9,7 @@
 #ifndef INC_MANCHESTERCODE_H_
 #define INC_MANCHESTERCODE_H_
 
-#define MANCHESTERCODE_DEBUG
-
+#define CODE_BYTELENGTH 25
 /* 2500 bits per second*/
 #define BAUD_RATE 2000
 /* The time for one bit in 碌s/cycles */
@@ -44,7 +43,7 @@ void    DiffManchester_SendData   (const uint8_t* data, uint16_t bytes);
 void    DiffManchester_EnableRead ( uint8_t True );
 void    DiffManchester_WaitForRead( void );
 void    DiffManchester_ReadBit    ( void );
-uint8_t DiffManchester_GetData    ( uint8_t **data, uint8_t dataLens );
+uint8_t DiffManchester_GetData    ( uint8_t data[CODE_BYTELENGTH], uint8_t dataLens );
 
 extern  void delay_us(uint16_t us);
 
