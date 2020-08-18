@@ -9,6 +9,8 @@
 #ifndef INC_MANCHESTERCODE_H_
 #define INC_MANCHESTERCODE_H_
 
+#define MANCHESTERCODE_DEBUG
+
 /* 2500 bits per second*/
 #define BAUD_RATE 2000
 /* The time for one bit in 碌s/cycles */
