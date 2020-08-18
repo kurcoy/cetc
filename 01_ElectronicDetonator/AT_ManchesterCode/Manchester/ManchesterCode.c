@@ -158,7 +158,9 @@ uint8_t DiffManchester_GetData( uint8_t **data, uint8_t dataLens )
   receiving = 0;
   sampleCount = DATA_SAMPLE - 1;
   rawSamps = getSample();
-/*
+
+  //only for debug, using #define command
+  #ifdef MANCHESTERCODE_DEBUG
   if( 1 == error )
   {
 	printf("error \r\n");
@@ -170,7 +172,7 @@ uint8_t DiffManchester_GetData( uint8_t **data, uint8_t dataLens )
 	}
 	printf("\r\n");
   }
-*/
+  #endif
   return error;
 }
 

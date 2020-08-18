@@ -8,7 +8,8 @@
 
 #include <stdint.h>
 #include <intrinsics.h>
-//#include <ioavr.h>
+
+//#define MANCHESTERCODE_DEBUG
 
 #define ENABLE_BIT_DEFINITIONS
 
