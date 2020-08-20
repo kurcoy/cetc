@@ -153,7 +153,7 @@ uint8_t DiffManchester_GetData( uint8_t data[CODE_BYTELENGTH], uint8_t dataLens 
   }
 
   //clear the buffer and ready for next run
-  HAL_Delay(1);
+  delay_ms(1);
   receiving = 0;
   sampleCount = DATA_SAMPLE - 1;
   rawSamps = getSample();

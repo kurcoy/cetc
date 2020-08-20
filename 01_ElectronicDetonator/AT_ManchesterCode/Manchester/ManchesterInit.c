@@ -7,6 +7,8 @@
 #include "ManchesterCode.h"
 #include <ioavr.h>
 
+uint16_t connectionCount=0;
+
 /***********************************RX*************************************/
 /***********************************RX*************************************/
 void initRX(void)
@@ -36,7 +38,7 @@ void initRX(void)
     /* TCNT1 Timer/Counter Register: Enable the overflow interrupt for Timer1 */
     //SET_BIT(TIMSK,TOIE1);
   
-    TCNT0 = TCNT1= 0;
+    TCNT0 = 0;
     /*Enable Timer0 CTC mode*/
     CLEAR_BIT(TCCR0A,WGM00);
     SET_BIT  (TCCR0A,WGM01);
@@ -57,7 +59,14 @@ void initRX(void)
      Timer0 is used for sampling */
  
     SET_BIT  (TCCR0B,CS01); 
- 
+    
+    TCNT1 = 0;
+    /* Enable TCNT1 with clk/8 pre-scaling */
+    CLEAR_BIT(TCCR1,CS10);
+    CLEAR_BIT(TCCR1,CS11);
+    SET_BIT  (TCCR1,CS12);
+    CLEAR_BIT(TCCR1,CS13);
+    SET_BIT(TIMSK,TOIE1);
 }
 
 void startRX(void)
@@ -67,59 +76,7 @@ void startRX(void)
     //SET_BIT(PORTB,LED);
     
     /* Enable global interrupts */
-    asm("sei");
-            
-    /* Timer/Counter Register: Reset Timer/Counter0 Register*/
-    //TCNT0 = TCNT1 = 0;
-
-    /* Enable while waiting for the preamble. Is turned false when the connection
-     times out. */
-    //receiving = 1;
-    
-    /* Going to record individual bits now */
-    //sampleCount = 3;
-    
-    /* Reset this. Otherwise all RX attempts will fail after the first one. Not sure why. */
-    //samples = 0;
-    
-    /* receiving becomes false if the connection times out, so this will not go on forever */
-    /*
-    while (receiving)
-    {
-        if (samplesReady)
-        {
-        
-            preambleBit = getSample();
-            
-            sampleCount = 3;
-                
-            if( preambleBit == LOW )
-            {
-                if (!highs) ++lows;
-                
-                else lows = highs = 0;
-            }
-            
-            else if (preambleBit == HIGH)
-            {
-                if (lows >= 6)
-                {
-                    if (++highs >= 2) break;
-                }
-                
-                else lows = highs = 0;
-            }
-            
-            else
-            {
-                lows = highs = 0;
-                sampleCount = 2;
-            }
-        }
-    }
-    */
-    //sampleCount = DATA_SAMPLE - 1;
-    
+    asm("sei");         
 }
 
 void stopRX(void)
@@ -137,31 +94,30 @@ void stopRX(void)
 #pragma vector= TIM1_OVF_vect
 __interrupt void timer1isr(void)
 {
-  /*  
-  if (++connectionCount >= CONNECTION_TIME)
-    {
-        connectionCount = 0;
-        
-        stopRX();
-    }
-  */
+  DiffManchester_ReadBit(  );
+  
+  if (++connectionCount >= 8000)
+  {
+    //DiffManchester_SendByte   ( 0x00, 0 );  
+    connectionCount = 0;
+    //SET_BIT(TX_PORT,TX_PIN);
+  }
+  TCNT1 = 130;
 }
 
 #pragma vector=PCINT0_vect 
 __interrupt void pcint0isr(void)
 //ISR(PCINT0_vect)
 {
-    /* Set the timer to what it should be at the pin change. 52 instead
-     of 50 because of ISR-call overhead. */
-    DiffManchester_EnableRead( 1 );
-    TCNT0 = 62;//52
+  DiffManchester_EnableRead( 1 );
+  TCNT1 = 65+130;//52
 }
 
 #pragma vector=TIM0_COMPA_vect
 __interrupt void timer0isr(void)
 //ISR(TIMER0_COMPA_vect)
 {
-  DiffManchester_ReadBit(  );
+  
 
 }
 
