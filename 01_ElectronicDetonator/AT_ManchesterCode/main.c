@@ -21,11 +21,11 @@ int main( void )
   {
     delay_ms(500);
 
-    uint8_t data[25] = {0XFF, 0x37, 0x33, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x31, 0x01,
+    uint8_t data[25] = {0XAA, 0x37, 0x33, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x31, 0x01,
                         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xEE, 0xEE};
 
-    /*
-    DiffManchester_WaitForRead(  );
+    
+    //DiffManchester_WaitForRead(  );
     if( 0 == DiffManchester_GetData( data, 1 ))
     {
       //data[dataLens-1] = i++;
@@ -34,10 +34,10 @@ int main( void )
     }
     else
     {
-      DiffManchester_SendByte   ( 0x00, 0 );   
+      DiffManchester_SendByte   ( 0xEE, 0 );   
     }
-     */
-    DiffManchester_SendData( data, 25); 
+     
+    //DiffManchester_SendData( data, 25); 
   
   }
   
