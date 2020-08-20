@@ -19,27 +19,25 @@ int main( void )
   
   while( 1 )
   {
-    //SET_BIT(TX_PORT,TX_PIN);
     delay_ms(500);
-    //CLEAR_BIT(TX_PORT,TX_PIN);
-    const uint8_t databyte = 0xE9;
-    //Manchester_sendByte(data);
+
     uint8_t data[25] = {0XFF, 0x37, 0x33, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x31, 0x01,
-                        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xEE, 0xAA};
-    //{0xE9, 0x16, 0x3c};
-    //uint8_t *P = &data;
-    //if( DiffManchester_GetData( &P, 1 ) ) ; 
-    //DiffManchester_sendByte( databyte, 1);
+                        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xEE, 0xEE};
+
     /*
-    lastEnd = 1;
-    for( int i=0; i<2; i++ )
+    DiffManchester_WaitForRead(  );
+    if( 0 == DiffManchester_GetData( data, 1 ))
     {
-      lastEnd = DiffManchester_sendByte( data[i], lastEnd); 
+      //data[dataLens-1] = i++;
+      DiffManchester_SendData( data, 1); 
+      //DiffManchester_SendByte   ( 0x00, 0 );       
     }
-    */
+    else
+    {
+      DiffManchester_SendByte   ( 0x00, 0 );   
+    }
+     */
     DiffManchester_SendData( data, 25); 
-    //Manchester_sendByte(databyte);
-    
   
   }
   
