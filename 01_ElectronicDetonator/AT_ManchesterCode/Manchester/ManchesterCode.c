@@ -176,15 +176,18 @@ void DiffManchester_ReadBit( void )
   uint8_t j;
   if( 1 == receiving )
   {
+    //SET_IO(TX_PORT,TX_PIN);
     if (IS_IOSET(RX_PORT,RX_PIN))
     {
       SET_DataBIT(samples,sampleCount);
+      
     }
     else
     {
       CLEAR_DataBIT(samples,sampleCount);
+      
     }
-  
+    //CLEAR_IO(TX_PORT,TX_PIN);
     //If the bit is finished, set the samplesReady flag /
     if (! sampleCount--)
     {
@@ -197,16 +200,16 @@ void DiffManchester_ReadBit( void )
       {
         if (IS_DataSET(samples,j))
         {
-          SET_IO(TX_PORT,TX_PIN);
-          delay_us(SAMPLE_TIME);
+          CLEAR_IO(TX_PORT,TX_PIN);
+          //delay_us(SAMPLE_TIME);
         }
         else
         {
-          CLEAR_IO(TX_PORT,TX_PIN);
-          delay_us(SAMPLE_TIME);
+          SET_IO(TX_PORT,TX_PIN);
+          //delay_us(SAMPLE_TIME);
         }
       }
-      */
+     */
     }
   }
 }

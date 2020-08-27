@@ -68,15 +68,16 @@ uint32_t samples1, sampleCount1, samplesReady1;
 #pragma vector= TIM1_COMPA_vect //TIM1_COMPA_vect
 __interrupt void timer1isr(void)
 {
+  TCNT1 = 10; 
   DiffManchester_ReadBit( );	
-  TCNT1 = 50; 
+  //change the value at the end of interrupt
 }
 
 #pragma vector=PCINT0_vect 
 __interrupt void pcint0isr(void)
 //ISR(PCINT0_vect)
 {
-  TCNT1 = 90;
+  TCNT1 = 70; 
   DiffManchester_EnableRead( 1 );
 }
 
