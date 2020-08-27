@@ -7,8 +7,9 @@
 #include "ManchesterCode.h"
 #include <ioavr.h>
 
-uint16_t connectionCount=0;
-
+uint16_t usTimer1Count=0;
+uint16_t usTimer0Count=0;
+volatile uint8_t  usTimerEnable=0;
 /***********************************RX*************************************/
 /***********************************RX*************************************/
 void initRX(void)
@@ -30,53 +31,25 @@ void initRX(void)
     /* Pin Change Mask Register: Watch pin change on pin 3 */
     SET_BIT(PCMSK,PCINT1);
     
-    /* Enable Timer1 with clk/4096 prescaling. //0x0E, ck/8192
-     Timer1 is used for timing out the connection pipeline, overflow interrupt( Timer/Counter Register TCNT0 )
-     Timer0 is used for sampling, output compare interrupt( Output Compare Register A OCR0A)*/
-    //TCCR1 |= 0x0D;
-    
+
     /* TCNT1 Timer/Counter Register: Enable the overflow interrupt for Timer1 */
-    //SET_BIT(TIMSK,TOIE1);
-  
-    TCNT0 = 0;
-    /*Enable Timer0 CTC mode*/
-    CLEAR_BIT(TCCR0A,WGM00);
-    SET_BIT  (TCCR0A,WGM01);
-    CLEAR_BIT(TCCR0B,WGM02);
-    
-    /* We are not using the Clear Timer on Compare Match feature. The reason
-     is that it's not actually the ISR call that needs to be called regularly,
-     but the sampling, therefore we clear the timer after the sample and don't
-     let the timer be cleared automatically. */
-    
-    /* Output Compare Register A: Sample time */
-    OCR0A = 255;
- 
-    /* Enable the output compare interrupt for Timer0 */
-    SET_BIT  (TIMSK,OCIE0A);
-    //SET_BIT  (TIMSK, TOIE1);
-    /* Turn on Timer0 with clk/8 prescaling, gives 1µs per cycle @8Mhz.
-     Timer0 is used for sampling */
- 
-    SET_BIT  (TCCR0B,CS01); 
-    
-    TCNT1 = 0;
     /* Enable TCNT1 with clk/8 pre-scaling */
-    CLEAR_BIT(TCCR1,CS10);
-    CLEAR_BIT(TCCR1,CS11);
-    SET_BIT  (TCCR1,CS12);
-    CLEAR_BIT(TCCR1,CS13);
-    SET_BIT(TIMSK,TOIE1);
+    TCNT1 = 0;
+    SET_BIT(TIMSK,OCIE1A);
+    OCR1A =125;
+    
+    asm("sei"); 
+    
 }
 
 void startRX(void)
 {
-    uint8_t preambleBit, lows = 0, highs = 0;
-    
-    //SET_BIT(PORTB,LED);
-    
     /* Enable global interrupts */
-    asm("sei");         
+    //OCR1C = 125;
+    SET_BIT(TIMSK,OCIE1A);
+    SET_BIT  (TCCR1,CS12);
+    //SET_BIT  (TCCR1,CS10);
+    usTimerEnable=0;
 }
 
 void stopRX(void)
@@ -85,40 +58,26 @@ void stopRX(void)
      else stop waiting for samples in main */
     DiffManchester_EnableRead ( 0 );     
     /* Disable sampling Timer/Counter */
-    CLEAR_BIT(TIMSK,OCIE0A);
+
+    CLEAR_BIT(TCCR1,CS12);
+    usTimerEnable=0;
 
 }
 
-
-//ISR(TIMER1_OVF_vect)//TIM1_OVF_vect 
-#pragma vector= TIM1_OVF_vect
+uint32_t samples1, sampleCount1, samplesReady1;
+#pragma vector= TIM1_COMPA_vect //TIM1_COMPA_vect
 __interrupt void timer1isr(void)
 {
-  DiffManchester_ReadBit(  );
-  
-  if (++connectionCount >= 8000)
-  {
-    //DiffManchester_SendByte   ( 0x00, 0 );  
-    connectionCount = 0;
-    //SET_BIT(TX_PORT,TX_PIN);
-  }
-  TCNT1 = 130;
+  DiffManchester_ReadBit( );	
+  TCNT1 = 50; 
 }
 
 #pragma vector=PCINT0_vect 
 __interrupt void pcint0isr(void)
 //ISR(PCINT0_vect)
 {
+  TCNT1 = 90;
   DiffManchester_EnableRead( 1 );
-  TCNT1 = 65+130;//52
-}
-
-#pragma vector=TIM0_COMPA_vect
-__interrupt void timer0isr(void)
-//ISR(TIMER0_COMPA_vect)
-{
-  
-
 }
 
 /***********************************TX*************************************/
@@ -127,10 +86,4 @@ void initTX(void)
 {
     /* Set TX_PIN as output */
     SET_BIT(DDRB,DDB0);
-	
-    /* Enable TCNT1 with clk/8 pre-scaling */
-    CLEAR_BIT(TCCR1,CS10);
-    CLEAR_BIT(TCCR1,CS11);
-    SET_BIT  (TCCR1,CS12);
-    CLEAR_BIT(TCCR1,CS13);
 }
