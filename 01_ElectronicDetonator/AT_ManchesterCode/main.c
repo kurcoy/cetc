@@ -8,37 +8,40 @@ int main( void )
   initRX ( );
   initTX ( );
   
-  //SET_BIT(TX_PORT,TX_PIN);
-  //delay_ms(1000);
+  SET_BIT(TX_PORT,TX_PIN);
+  delay_ms(1000);
   CLEAR_BIT(TX_PORT,TX_PIN);
-  //startRX( );
-  //SET_BIT(TX_PORT,TX_PIN); 
-  
-  uint8_t lastEnd = 1;
-  delay_ms(5000);
-  
+
+  startRX( );
+
+  uint8_t data[25];
+  uint8_t error=1;
+  uint8_t lens = 25;  
   while( 1 )
-  {
-    delay_ms(500);
-
-    uint8_t data[25] = {0XAA, 0x37, 0x33, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x31, 0x01,
-                        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xEE, 0xEE};
-
+  {     
+    uint8_t datasend[25] = {0XAA, 0xEE, 0xCC, 0xCC, 0xDD, 0xDD, 0xEE, 0xEE, 0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xAA, 0xBB,
+			    0xCC, 0xDD, 0xEE, 0xFF, 0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xAA};
     
-    //DiffManchester_WaitForRead(  );
-    if( 0 == DiffManchester_GetData( data, 1 ))
-    {
-      //data[dataLens-1] = i++;
-      DiffManchester_SendData( data, 1); 
-      //DiffManchester_SendByte   ( 0x00, 0 );       
+    DiffManchester_WaitForRead(  );
+    error = DiffManchester_GetData( data, lens );
+    error = 0;
+    
+    stopRX( );
+    delay_ms(500);
+    uint8_t data1[1]=0xAA;
+    //DiffManchester_SendByte(data1, 0);
+  
+    if(error ==0 )
+    { 
+      DiffManchester_SendData( data, lens); 
     }
     else
     {
-      DiffManchester_SendByte   ( 0xEE, 0 );   
+      datasend[24] = 0XBB;
+      DiffManchester_SendData ( datasend, lens );   
     }
-     
-    //DiffManchester_SendData( data, 25); 
-  
+ 
+    startRX();
   }
   
   return 0;
