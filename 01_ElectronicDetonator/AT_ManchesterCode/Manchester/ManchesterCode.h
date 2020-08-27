@@ -6,8 +6,6 @@
 #ifndef INC_MANCHESTERCODE_H_
 #define INC_MANCHESTERCODE_H_
 
-//#include <stdint.h>
-//#include <intrinsics.h>
 #include "ManchesterInit.h"
 
 #define CODE_BYTELENGTH 25
@@ -50,7 +48,6 @@ void    DiffManchester_ReadBit    ( void );
 uint8_t DiffManchester_GetData    ( uint8_t data[CODE_BYTELENGTH], uint8_t dataLens );
 
 #define CPU_F ((double)8000000)
-//#define delay_us(x) ustimer_delay(x)
 #define delay_us(x) __delay_cycles((unsigned long)(CPU_F*(double)x/1000000.0))
 #define delay_ms(x) __delay_cycles((unsigned long)(CPU_F*(double)x/1000.0))
 

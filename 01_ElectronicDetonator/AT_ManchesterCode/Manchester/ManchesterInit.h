@@ -1,7 +1,9 @@
+/*
+ * ManchesterInit.c
+ *
+ *  Created on: 2020-8-17 *      Author: Cliff
+ */
 
-//  Created by Peter Goldsborough on 02/06/14.
-//  Copyright (c) 2014 Peter Goldsborough. All rights reserved.
-//
 #ifndef __ManchesterINIT__
 #define __ManchesterINIT__
 #include <stdint.h>
