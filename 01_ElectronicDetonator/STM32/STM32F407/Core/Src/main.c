@@ -110,8 +110,13 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   HAL_GPIO_WritePin(GPIOF, GPIO_PIN_9, GPIO_PIN_RESET);
-  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_0, GPIO_PIN_SET);
+  //HAL_GPIO_WritePin(GPIOE, GPIO_PIN_0, GPIO_PIN_SET);
   HAL_TIM_Base_Start_IT(&htim6);
+  HAL_Delay(1000);
+  uint8_t dataSend[25] = {0XCC, 0x37, 0x33, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x31, 0x01,
+  							  0x00, 0x00, 0x00, 0x00, 0x00, 0xBB, 0xCC, 0xDD, 0xEE, 0xAA};
+  uint8_t dataLens = 25;
+  //DiffManchester_SendData   (dataSend, 25);
   /* USER CODE END 2 */
  
  
@@ -123,16 +128,32 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	//HAL_GPIO_TogglePin(GPIOE,GPIO_PIN_0);
-	//delay_us(500);
-	//HAL_Delay(1000);
-	//lastEnd = DiffManchester_sendByte( databyte, lastEnd);
 
+	//HAL_Delay(500);
+	uint8_t data[25];
+	//uint8_t dataSend[25] = {0X00, 0x37, 0x33, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x31, 0x01,
+	//						  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xEE, 0xAA};
+
+	DiffManchester_SendData   (dataSend, dataLens);
 	DiffManchester_WaitForRead(  );
 
-	uint8_t data[2]; uint8_t dataLens = 25;
-	DiffManchester_GetData( &data, dataLens );
-	//lastEnd = DiffManchester_SendByte( *data, lastEnd);
+
+	if( 0 == DiffManchester_GetData( data, dataLens ))
+	{
+		//DiffManchester_SendData   (data, 25);
+		for( uint8_t j=0; j<dataLens; j++ )
+			printf( "%x ", data[j] );
+		printf( "\r\n");
+
+	}
+    else
+    {
+    	printf("error\r\n");
+    }
+
+	//HAL_Delay(500);
+
+
   }
   /* USER CODE END 3 */
 }
@@ -305,7 +326,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOE_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_0, GPIO_PIN_SET);
+ // HAL_GPIO_WritePin(GPIOE, GPIO_PIN_0, GPIO_PIN_SET);
 
   /*Configure GPIO pin : PA5 */
   GPIO_InitStruct.Pin = GPIO_PIN_5;
@@ -352,6 +373,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	if(htim6.Instance == htim->Instance)
 	{
 		DiffManchester_ReadBit(  );
+		//HAL_GPIO_TogglePin( GPIOE, GPIO_PIN_0);
 	}
 }
 

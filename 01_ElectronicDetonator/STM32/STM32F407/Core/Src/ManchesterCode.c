@@ -58,6 +58,7 @@ uint8_t DiffManchester_SendByte( uint8_t byte, uint8_t lastEnd)
 		else
 		{
 		  //no jump, 10
+		  lastEnd = 0;
 		  delay_us(HALF_TIME);//while(TCNT0 < HALF_TIME);
 		  SET_IO(TX_PORT, TX_PIN);
 
@@ -70,7 +71,7 @@ uint8_t DiffManchester_SendByte( uint8_t byte, uint8_t lastEnd)
    return lastEnd;
 }
 
-void  DiffManchester_SendData   (const uint8_t* data, uint16_t bytes)
+void  DiffManchester_SendData   (const uint8_t* data, uint8_t bytes)
 {
 	uint8_t i;
 	uint8_t lastEnd = 1;
@@ -131,11 +132,12 @@ uint8_t interpretSample(uint32_t samps)
 uint8_t DiffManchester_GetData( uint8_t data[CODE_BYTELENGTH], uint8_t dataLens )
 {
   uint8_t  error=1;
+  uint8_t i;
   uint32_t rawSamps;
   if( samplesReady ) //receiving
   {
 	error=0;
-	for( uint8_t i=0; i<dataLens; i++ )
+	for( i=0; i<dataLens; i++ )
 	{
 	  while( 0 == samplesReady );//need to wait in here
 	  {
@@ -153,7 +155,7 @@ uint8_t DiffManchester_GetData( uint8_t data[CODE_BYTELENGTH], uint8_t dataLens 
   }
 
   //clear the buffer and ready for next run
-  HAL_Delay(1);
+  delay_ms(1);
   receiving = 0;
   sampleCount = DATA_SAMPLE - 1;
   rawSamps = getSample();

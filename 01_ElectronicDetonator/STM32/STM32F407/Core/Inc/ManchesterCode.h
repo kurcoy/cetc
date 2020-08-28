@@ -25,8 +25,8 @@
 #define CLEAR_IO(GPIO,GPIO_PIN)  HAL_GPIO_WritePin(GPIO,GPIO_PIN,GPIO_PIN_RESET)
 
 #define IS_DataSET(byte,bit)         (((byte) & (1UL << (bit))) >> (bit))
-#define SET_DataBIT(byte, bit)       ((byte)  |= (1 << (bit)))
-#define CLEAR_DataBIT(byte,bit)      ((byte)  &= ~(1 << (bit)))
+#define SET_DataBIT(byte, bit)       ((byte)  |= (1UL << (bit)))
+#define CLEAR_DataBIT(byte,bit)      ((byte)  &= ~(1UL << (bit)))
 
 #define RX_PORT GPIOA
 #define RX_PIN  GPIO_PIN_5
@@ -38,7 +38,7 @@
 #define LOW  0x0C
 
 uint8_t DiffManchester_SendByte   ( uint8_t byte, uint8_t lastEnd);
-void    DiffManchester_SendData   (const uint8_t* data, uint16_t bytes);
+void    DiffManchester_SendData   (const uint8_t* data, uint8_t bytes);
 
 void    DiffManchester_EnableRead ( uint8_t True );
 void    DiffManchester_WaitForRead( void );
@@ -46,5 +46,6 @@ void    DiffManchester_ReadBit    ( void );
 uint8_t DiffManchester_GetData    ( uint8_t data[CODE_BYTELENGTH], uint8_t dataLens );
 
 extern  void delay_us(uint16_t us);
+#define delay_ms(x) HAL_Delay(x)
 
 #endif /* INC_MANCHESTERCODE_H_ */
