@@ -1036,7 +1036,7 @@
         </option>
         <option>
           <name>GG64BitDoubles</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>GGFPSLICCOnfig</name>
@@ -1049,11 +1049,11 @@
         </option>
         <option>
           <name>LCHeapSize</name>
-          <state>0x10</state>
+          <state>0x30</state>
         </option>
         <option>
           <name>SCCStackSize</name>
-          <state>0x20</state>
+          <state>0x60</state>
         </option>
         <option>
           <name>SCExtCStack</name>
@@ -1061,7 +1061,7 @@
         </option>
         <option>
           <name>SCRStackSize</name>
-          <state>16</state>
+          <state>64</state>
         </option>
         <option>
           <name>SCExtRStack</name>
@@ -1135,16 +1135,16 @@
         </option>
         <option>
           <name>RTLibraryPath</name>
-          <state>$TOOLKIT_DIR$\LIB\CLIB\cl1s-ec_nomul.r90</state>
+          <state>$TOOLKIT_DIR$\LIB\CLIB\cl1s-ec_nomul-64.r90</state>
         </option>
         <option>
           <name>Input variant</name>
           <version>0</version>
-          <state>2</state>
+          <state>1</state>
         </option>
         <option>
           <name>Input description</name>
-          <state>No float.</state>
+          <state>Full formatting.</state>
         </option>
         <option>
           <name>Output variant</name>
@@ -1174,7 +1174,7 @@
         </option>
         <option>
           <name>LCNearHeapSize</name>
-          <state>0x20</state>
+          <state>0x30</state>
         </option>
         <option>
           <name>LCFarHeapSize</name>
@@ -1249,7 +1249,7 @@
         </option>
         <option>
           <name>CCListCFile</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>CCListCMnemonics</name>
@@ -1257,7 +1257,7 @@
         </option>
         <option>
           <name>CCListCMessages</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>CCListAssFile</name>
@@ -1329,7 +1329,7 @@
         <option>
           <name>CCCrossCallPassesList</name>
           <version>8</version>
-          <state>1</state>
+          <state>5</state>
         </option>
         <option>
           <name>CCObjUseModuleName</name>
@@ -1365,7 +1365,7 @@
         </option>
         <option>
           <name>CCOptForceCrossCall</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>CCCharIs</name>
@@ -1385,7 +1385,7 @@
         </option>
         <option>
           <name>CCMultibyteSupport</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>CCRequirePrototypes</name>
@@ -1982,6 +1982,9 @@
       <data/>
     </settings>
   </configuration>
+  <mfc_discard>
+    <configuration>Release</configuration>
+  </mfc_discard>
   <group>
     <name>Manchester</name>
     <file>
@@ -1989,6 +1992,12 @@
     </file>
     <file>
       <name>$PROJ_DIR$\Manchester\ManchesterCode.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Manchester\ManchesterInit.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Manchester\ManchesterInit.h</name>
     </file>
   </group>
   <file>

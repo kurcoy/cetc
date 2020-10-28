@@ -22,7 +22,7 @@
 @REM but they are listed at the end of this file for reference.
 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 5.4\common\bin\cspybat" "C:\Program Files (x86)\IAR Systems\Embedded Workbench 5.4\avr\bin\avrproc.dll" "C:\Program Files (x86)\IAR Systems\Embedded Workbench 5.4\avr\bin\avrsim.dll"  %1 --plugin "C:\Program Files (x86)\IAR Systems\Embedded Workbench 5.4\avr\bin\<libsupport_plugin>" --backend -B "--cpu=tiny45" "--enhanced_core" "-p" "C:\Program Files (x86)\IAR Systems\Embedded Workbench 5.4\avr\Config\iotiny45.ddf" "--eeprom_size" "256" "-d" "sim" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 5.4\common\bin\cspybat" "C:\Program Files (x86)\IAR Systems\Embedded Workbench 5.4\avr\bin\avrproc.dll" "C:\Program Files (x86)\IAR Systems\Embedded Workbench 5.4\avr\bin\avrsim.dll"  %1 --plugin "C:\Program Files (x86)\IAR Systems\Embedded Workbench 5.4\avr\bin\<libsupport_plugin>" --backend -B "--cpu=tiny45" "--enhanced_core" "--64bit_doubles" "-p" "C:\Program Files (x86)\IAR Systems\Embedded Workbench 5.4\avr\Config\iotiny45.ddf" "--eeprom_size" "256" "-d" "sim" 
 
 
 @REM Loaded plugins:

@@ -2,90 +2,90 @@
 
 <project>
   <fileVersion>2</fileVersion>
-  <fileChecksum>4140587359</fileChecksum>
+  <fileChecksum>1350213626</fileChecksum>
   <configuration>
     <name>Debug</name>
     <outputs>
-      <file>$PROJ_DIR$\Debug\Exe\ManchesterCode.d90</file>
-      <file>$PROJ_DIR$\main.c</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\stdint.h</file>
-      <file>$PROJ_DIR$\Manchester\ManchesterRX.c</file>
-      <file>$TOOLKIT_DIR$\inc\iomacro.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\ManchesterCode.pbd</file>
-      <file>$PROJ_DIR$\Debug\Obj\ManchesterTX.r90</file>
-      <file>$PROJ_DIR$\Debug\Obj\main.r90</file>
-      <file>$PROJ_DIR$\Debug\Exe\ManchesterCode.hex</file>
       <file>$TOOLKIT_DIR$\lib\clib\cl1s-ec_nomul.r90</file>
-      <file>$PROJ_DIR$\Manchester\ManchesterTX.c</file>
-      <file>$TOOLKIT_DIR$\inc\iotiny45.h</file>
-      <file>$TOOLKIT_DIR$\inc\bitdefinitions\iotiny45.inc</file>
-      <file>$TOOLKIT_DIR$\inc\ioavr.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\ManchesterTX.pbi</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\DLib_Threads.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\yvals.h</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\DLib_Defaults.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\ManchesterRX.r90</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\xencoding_limits.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\ManchesterRX.pbi</file>
-      <file>$PROJ_DIR$\Manchester\ManchesterGlobal.h</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\ycheck.h</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\DLib_Product.h</file>
-      <file>$PROJ_DIR$\Manchester\ManchesterTX.h</file>
-      <file>$TOOLKIT_DIR$\src\template\cfg1soim.xcl</file>
-      <file>$PROJ_DIR$\Debug\Exe\ManchesterCode.eep</file>
-      <file>$PROJ_DIR$\Manchester\ManchesterRX.h</file>
-      <file>$PROJ_DIR$\Debug\Exe\ManchesterCode.A90</file>
+      <file>$PROJ_DIR$\main.c</file>
       <file>$TOOLKIT_DIR$\src\template\cfgtiny45.xcl</file>
+      <file>$PROJ_DIR$\Manchester\ManchesterGlobal.h</file>
+      <file>$PROJ_DIR$\Debug\Exe\ManchesterCode.eep</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\ycheck.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.r90</file>
+      <file>$PROJ_DIR$\Manchester\ManchesterTX.h</file>
+      <file>$TOOLKIT_DIR$\inc\bitdefinitions\iotiny45.inc</file>
+      <file>$PROJ_DIR$\Debug\Exe\ManchesterCode.A90</file>
+      <file>$TOOLKIT_DIR$\inc\iotiny45.h</file>
+      <file>$PROJ_DIR$\Manchester\ManchesterRX.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\DLib_Defaults.h</file>
+      <file>$PROJ_DIR$\Debug\Exe\ManchesterCode.d90</file>
+      <file>$PROJ_DIR$\Debug\Obj\ManchesterRX.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\xencoding_limits.h</file>
+      <file>$TOOLKIT_DIR$\inc\iomacro.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\ManchesterRX.r90</file>
+      <file>$PROJ_DIR$\Manchester\ManchesterTX.c</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\DLib_Product.h</file>
+      <file>$TOOLKIT_DIR$\inc\ioavr.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\ManchesterTX.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\stdint.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\ManchesterTX.r90</file>
+      <file>$PROJ_DIR$\Debug\Obj\ManchesterCode.pbd</file>
+      <file>$PROJ_DIR$\Debug\Exe\ManchesterCode.hex</file>
+      <file>$TOOLKIT_DIR$\src\template\cfg1soim.xcl</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\yvals.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\DLib_Threads.h</file>
+      <file>$PROJ_DIR$\Manchester\ManchesterRX.c</file>
     </outputs>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 21</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 6</file>
+        </tool>
+      </outputs>
+    </file>
     <file>
       <name>$PROJ_DIR$\Debug\Exe\ManchesterCode.d90</name>
       <outputs>
         <tool>
           <name>XLINK</name>
-          <file> 27 29 8</file>
+          <file> 4 9 26</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>XLINK</name>
-          <file> 30 26 19 6 7 9</file>
+          <file> 2 27 17 24 6 0</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\main.c</name>
+      <name>$PROJ_DIR$\Manchester\ManchesterTX.c</name>
       <outputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 7</file>
-        </tool>
-        <tool>
           <name>BICOMP</name>
-          <file> 16</file>
+          <file> 22</file>
         </tool>
-      </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Manchester\ManchesterRX.c</name>
-      <outputs>
         <tool>
           <name>ICCAVR</name>
-          <file> 19</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 21</file>
+          <file> 24</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 28 2 23 17 18 24 20 15 22 13 11 4 12</file>
+          <name>BICOMP</name>
+          <file> 7 23 5 28 12 19 15 29 3 20 10 16 8</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 28 2 23 17 18 24 20 15 22 13 11 4 12</file>
+          <name>ICCAVR</name>
+          <file> 7 23 5 28 12 19 15 29 3 20 10 16 8</file>
         </tool>
       </inputs>
     </file>
@@ -94,30 +94,30 @@
       <inputs>
         <tool>
           <name>BILINK</name>
-          <file> 21 14 16</file>
+          <file> 14 22 21</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\Manchester\ManchesterTX.c</name>
+      <name>$PROJ_DIR$\Manchester\ManchesterRX.c</name>
       <outputs>
-        <tool>
-          <name>ICCAVR</name>
-          <file> 6</file>
-        </tool>
         <tool>
           <name>BICOMP</name>
           <file> 14</file>
         </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 17</file>
+        </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 25 2 23 17 18 24 20 15 22 13 11 4 12</file>
+          <name>BICOMP</name>
+          <file> 11 23 5 28 12 19 15 29 3 20 10 16 8</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 25 2 23 17 18 24 20 15 22 13 11 4 12</file>
+          <name>ICCAVR</name>
+          <file> 11 23 5 28 12 19 15 29 3 20 10 16 8</file>
         </tool>
       </inputs>
     </file>
@@ -126,7 +126,7 @@
       <outputs>
         <tool>
           <name>XLINK</name>
-          <file> 27 29 8 0</file>
+          <file> 4 9 26 13</file>
         </tool>
       </outputs>
     </file>
@@ -138,95 +138,96 @@
   <configuration>
     <name>Release</name>
     <outputs>
-      <file>$PROJ_DIR$\main.c</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\stdint.h</file>
-      <file>$TOOLKIT_DIR$\inc\iomacro.h</file>
-      <file>$PROJ_DIR$\Manchester\ManchesterCode.h</file>
-      <file>$TOOLKIT_DIR$\lib\clib\cl1s-ec_nomul.r90</file>
-      <file>$PROJ_DIR$\Manchester\ManchesterCode.c</file>
-      <file>$PROJ_DIR$\..\..\..\ManchesterCode\main.c</file>
-      <file>$TOOLKIT_DIR$\inc\iotiny45.h</file>
-      <file>$TOOLKIT_DIR$\inc\bitdefinitions\iotiny45.inc</file>
-      <file>$TOOLKIT_DIR$\inc\ioavr.h</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\DLib_Threads.h</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\yvals.h</file>
-      <file>$PROJ_DIR$\Release\Obj\main.pbi</file>
-      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
-      <file>$PROJ_DIR$\Release\Obj\ManchesterCode.pbd</file>
-      <file>$PROJ_DIR$\Release\Obj\main.r90</file>
       <file>$PROJ_DIR$\Release\Exe\ManchesterCode_eeprom.hex</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\DLib_Defaults.h</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\xencoding_limits.h</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\ycheck.h</file>
+      <file>$PROJ_DIR$\Release\Obj\ManchesterInit.r90</file>
       <file>$PROJ_DIR$\Release\Exe\ManchesterCode_data.hex</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\DLib_Product.h</file>
-      <file>$TOOLKIT_DIR$\src\template\cfg1soim.xcl</file>
-      <file>$PROJ_DIR$\Release\Obj\ManchesterCode.pbi</file>
-      <file>$PROJ_DIR$\Release\Exe\ManchesterCode.hex</file>
-      <file>$PROJ_DIR$\Release\Obj\ManchesterCode.r90</file>
+      <file>$PROJ_DIR$\Manchester\ManchesterCode.c</file>
+      <file>$PROJ_DIR$\Manchester\ManchesterInit.c</file>
+      <file>$PROJ_DIR$\main.c</file>
       <file>$TOOLKIT_DIR$\src\template\cfgtiny45.xcl</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\ycheck.h</file>
+      <file>$TOOLKIT_DIR$\inc\bitdefinitions\iotiny45.inc</file>
+      <file>$TOOLKIT_DIR$\inc\iotiny45.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\DLib_Defaults.h</file>
+      <file>$PROJ_DIR$\Manchester\ManchesterCode.h</file>
+      <file>$PROJ_DIR$\Manchester\ManchesterInit.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\xencoding_limits.h</file>
+      <file>$TOOLKIT_DIR$\lib\clib\cl1s-ec_nomul-64.r90</file>
+      <file>$PROJ_DIR$\Release\Obj\main.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\iomacro.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\DLib_Product.h</file>
+      <file>$PROJ_DIR$\Release\Obj\ManchesterCode.r90</file>
+      <file>$TOOLKIT_DIR$\inc\ioavr.h</file>
+      <file>$PROJ_DIR$\Release\Obj\main.r90</file>
+      <file>$PROJ_DIR$\Release\Exe\ManchesterCode.hex</file>
+      <file>$PROJ_DIR$\Release\Obj\ManchesterInit.pbi</file>
+      <file>$PROJ_DIR$\Release\List\ManchesterCode.lst</file>
+      <file>$PROJ_DIR$\Release\Obj\ManchesterCode.pbd</file>
+      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
+      <file>$PROJ_DIR$\Release\Obj\ManchesterCode.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\stdint.h</file>
+      <file>$TOOLKIT_DIR$\src\template\cfg1soim.xcl</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\yvals.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\DLib_Threads.h</file>
     </outputs>
-    <file>
-      <name>$PROJ_DIR$\main.c</name>
-      <outputs>
-        <tool>
-          <name>ICCAVR</name>
-          <file> 15</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 12</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCAVR</name>
-          <file> 3 1 19 11 17 21 18 10 13 9 7 2 8</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 3 1 19 11 17 21 18 10 13 9 7 2 8</file>
-        </tool>
-      </inputs>
-    </file>
     <file>
       <name>$PROJ_DIR$\Manchester\ManchesterCode.c</name>
       <outputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 25</file>
+          <name>BICOMP</name>
+          <file> 26</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 23</file>
+          <name>ICCAVR</name>
+          <file> 23 18 1 20</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCAVR</name>
-          <file> 3 1 19 11 17 21 18 10 13 9 7 2 8</file>
+          <name>BICOMP</name>
+          <file> 11 12 27 7 29 10 17 13 30 25 19 9 16 8</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 3 1 19 11 17 21 18 10 13 9 7 2 8</file>
+          <name>ICCAVR</name>
+          <file> 11 12 27 7 29 10 17 13 30 25 19 9 16 8 4 5</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>[ROOT_NODE]</name>
+      <name>$PROJ_DIR$\Manchester\ManchesterInit.c</name>
       <outputs>
         <tool>
-          <name>XLINK</name>
-          <file> 24 20 16</file>
+          <name>BICOMP</name>
+          <file> 22</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 1</file>
         </tool>
       </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Release\Obj\ManchesterCode.pbd</name>
       <inputs>
         <tool>
-          <name>BILINK</name>
-          <file> 23 12</file>
+          <name>BICOMP</name>
+          <file> 12 27 7 29 10 17 13 30 25 11 19 9 16 8</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 15</file>
+        </tool>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 20</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 12 27 7 29 10 17 13 30 25 11 19 9 16 8</file>
         </tool>
       </inputs>
     </file>
@@ -235,16 +236,45 @@
       <outputs>
         <tool>
           <name>XLINK</name>
-          <file> 20 16</file>
+          <file> 2 0</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>XLINK</name>
-          <file> 26 22 25 15 4</file>
+          <file> 6 28 18 1 20 14</file>
         </tool>
       </inputs>
     </file>
+    <file>
+      <name>$PROJ_DIR$\Release\Obj\ManchesterCode.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 26 22 15</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 21 2 0</file>
+        </tool>
+      </outputs>
+    </file>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\Manchester\ManchesterInit.c</name>
+      <tool>ICCAVR</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\main.c</name>
+      <tool>ICCAVR</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>[REBUILD_ALL]</name>
+    </forcedrebuild>
   </configuration>
 </project>
 

@@ -9,7 +9,7 @@ TriggerName=main
 LimitSize=0
 ByteLimit=50
 [DebugChecksum]
-Checksum=1976508637
+Checksum=-72347640
 [DisAssemblyWindow]
 NumStates=_ 1
 State 1=_ 1
@@ -32,7 +32,9 @@ Source=1
 Graph=0
 [Breakpoints]
 Bp0=_ "STD_CODE" "{$PROJ_DIR$\Manchester\ManchesterRX.c}.263.1@1" 0 0 0 0 "" 0 ""
-Count=1
+Bp1=_ "STD_DATA" "delay_us" 0 0 0 3 0 "" 0 ""
+Bp2=_ "STD_DATA" "samples" 0 0 0 3 0 "" 0 ""
+Count=3
 [TraceHelper]
 Enabled=0
 ShowSource=1
