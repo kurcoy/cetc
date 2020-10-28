@@ -27,16 +27,16 @@ void main( void )
     error = 0;
     
     stopRX( );
-    delay_ms(500);
+    delay_ms(1000);
   
     if(error ==0 )
     { 
       data[24] = i++;
-      DiffManchester_SendData( data, CODE_BYTELENGTH); 
+      //DiffManchester_SendData( data, CODE_BYTELENGTH); 
     }
     else
     {
-      DiffManchester_SendData ( datasend, CODE_BYTELENGTH );   
+      //DiffManchester_SendData ( datasend, CODE_BYTELENGTH );   
     }
  
     startRX();
