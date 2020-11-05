@@ -1,24 +1,30 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Ui_MainWindow  import Ui_WindowObject
 
+
 class myWindow(QtWidgets.QMainWindow, Ui_WindowObject):
 
     def __init__(self, WindowObject):
         super(myWindow, self).__init__(WindowObject)
         super().setupUi( WindowObject)   
-        
+       
         self.inputList = [self.input_1, self.input_2, self.input_3, self.input_4, self.input_5, self.input_6, self.input_7, self.input_8, self.input_9, self.input_10, self.input_11, self.input_12, self.input_13]
+        
+        self.tabWidget.currentChanged.connect(self.tabchange) 
         for i in range(0, 13):
             self.inputList[i].installEventFilter(self) 
  
-        self.__tabOrderList = [ self.input_1, self.input_11, self.input_12, self.input_13 ]
+        self.__tabOrderList =  [ self.input_1, self.input_2, self.input_3,self.input_4,self.input_11, self.input_12, self.input_13 ]
         self.__tabOrdercurr = 0
-        
+        self.__tabNumber = 6  
+        self.__tabOrderList[0].setFocus()
         #when tab control changed, the insertion controls also changed
+    ''''
         self.__tabOrderList.insert( 1,  self.input_4)
         self.__tabOrderList.insert( 1,  self.input_3)
         self.__tabOrderList.insert( 1,  self.input_2)
-        
+     '''
+     
     ''''
     self.input_1.installEventFilter(self) 
     self.input_2.installEventFilter(self) 
@@ -49,12 +55,27 @@ class myWindow(QtWidgets.QMainWindow, Ui_WindowObject):
                         print("test is running")
                         self.__tabOrderList[self.__tabOrdercurr].setFocus()
                        
-                        if( self.__tabOrdercurr < 6 ): 
+                        if( self.__tabOrdercurr < self.__tabNumber ): 
                             self.__tabOrdercurr = self.__tabOrdercurr + 1
                         else:
-                            self.__tabOrdercurr = 0
+                            self.__tabOrdercurr = 1
             return QtWidgets.QMainWindow.eventFilter(self, source, event) #其他情况会返回系统默认的事件处理方法        
-            
+         
+      
+    def tabchange(self):
+        self.__tabOrdercurr = 1
+        self.__tabOrderList.clear()
+        if self.tabWidget.currentIndex()==0:
+            self.__tabNumber = 6
+            self.__tabOrderList = [ self.input_1, self.input_2, self.input_3,self.input_4,self.input_11, self.input_12, self.input_13 ]
+            print('index:',self.tabWidget.currentIndex())
+        else:
+            self.__tabNumber = 9 
+            self.__tabOrderList = [ self.input_1, self.input_5, self.input_6,self.input_7,self.input_8, self.input_9,self.input_10,self.input_11, self.input_12, self.input_13 ]
+            print('index:',self.tabWidget.currentIndex())
+        self.__tabOrderList[self.__tabOrdercurr].setFocus() 
+        self.__tabOrdercurr = self.__tabOrdercurr + 1
+   
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
