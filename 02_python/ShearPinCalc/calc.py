@@ -6,32 +6,28 @@ from docx.shared import RGBColor
 from docx.shared import Inches
 from docx.enum.text import WD_LINE_SPACING
 
-import docx2txt
+#import docx2txt
 from pydocx import PyDocX
-import codecs
-from PyPDF2 import PdfFileReader, PdfFileWriter
-import html
+#import codecs
+#from PyPDF2 import PdfFileReader, PdfFileWriter
+#import html
 
 from win32com import client
 
 
 import copy
 import time
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtPrintSupport import  QPrinter, QPrintDialog, QPrintPreviewDialog
+#from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtPrintSupport import  QPrinter, QPrintPreviewDialog#, QPrintDialog
 from PyQt5.QtGui import QFont,QTextDocument,QTextCursor
 import tempfile
-import math
 
-import sys
-import os 
-import win32api
-import win32com
-import win32print
-from win32com.client import Dispatch
+#import win32com
+#import win32print
+#from win32com.client import Dispatch
 
 #from PySide2.QtWidgets import QDesktopWidget
-from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtWidgets import QApplication
 
 class myReport():
     def __init__(self):
