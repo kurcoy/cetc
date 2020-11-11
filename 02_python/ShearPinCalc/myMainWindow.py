@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtWidgets
 from Ui_MainWindow  import Ui_WindowObject
 from calc import myReport
-#import time
+
 import math
 from PyQt5.QtGui import QIcon, QPixmap
 import ctypes

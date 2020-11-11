@@ -6,27 +6,11 @@ from docx.shared import RGBColor
 from docx.shared import Inches
 from docx.enum.text import WD_LINE_SPACING
 
-#import docx2txt
-from pydocx import PyDocX
-#import codecs
-#from PyPDF2 import PdfFileReader, PdfFileWriter
-#import html
-
-from win32com import client
-
-
 import copy
 import time
-#from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtPrintSupport import  QPrinter, QPrintPreviewDialog#, QPrintDialog
-from PyQt5.QtGui import QFont,QTextDocument,QTextCursor
-import tempfile
 
-#import win32com
-#import win32print
-#from win32com.client import Dispatch
-
-#from PySide2.QtWidgets import QDesktopWidget
+from PyQt5.QtPrintSupport import  QPrinter, QPrintPreviewDialog
+from PyQt5.QtGui import QTextDocument
 from PyQt5.QtWidgets import QApplication
 
 class myReport():
@@ -166,47 +150,10 @@ class myReport():
         preview.exec_()    
     
     def handlePaintRequest(self, printer):
-        #document = QTextDocument()
-        #cursor = QTextCursor(document)
-        #cursor.insertText("打印预览")
-        #cursor.insertText(fp.read().decode('utf-8'))
-        #self.file.print(printer)
-        #
-        #print("DEBUG HERE")
-        #my_text = docx2txt.process("C:\\Users\\Cliff\\Desktop\\压力起爆装置2020-11-10_134607.docx")
-        #cursor.insertText(my_text.encode('utf-8').decode('utf-8','ignore'))
-        
-        #for paragraph  in self.file.paragraphs:
-        #   cursor.insertText(paragraph.text.encode('utf-8').decode('utf-8','ignore'))
-        #document.print_(printer)
-        
-        #html = PyDocX.to_html("C:\\Users\\Cliff\\Desktop\\压力起爆装置2020-11-10_134607.docx")
-        #f = open("test.html", 'w', encoding="utf-8")
-        #f.write(html)
-        #f.close()
-        #document.setHtml(f.html)
-        
-        #pdf = open("C:\\Users\\Cliff\\Desktop\\压力起爆装置2020-11-10_134607.html", 'rb', encoding="utf-8").read()
-        f = open("C:\\Users\\Cliff\\Desktop\\123.html", 'r', encoding='utf-8', errors='ignore'  )##
-        #pdf = PdfFileReader(f)
-        #page = pdf.getPage(0)
-        #print(page) 
-        myhtml = f.read()
-        print("============BRGIN============")
-        
         document = QTextDocument( )
-        document.setHtml(self.GenerateHTML()
-        #'<p><a href="C:\\Users\\Cliff\\Desktop\\image001.png"><img src="C:\\Users\\Cliff\\Desktop\\image001.png"></a></p>'  # 方式一直接加载本地图片
-        )
+        document.setHtml(self.GenerateHTML())
         document.print_(printer)
-        
-    def Temp(self):
-        fp = tempfile.TemporaryFile()
-        fp.write('压力起爆装置-剪切销数量设计报告\n，'.encode('utf-8'))
-        fp.write('起爆装置型号：YB压力起爆装置    井号\n。'.encode('utf-8'))
-        fp.seek(0)
-        print(fp.read().decode('utf-8')) 
-        
+
     def Param_Init(self, Calc_input={}, Calc_result={} ): 
          self.Param_input  = copy.deepcopy(Calc_input)
          self.Param_result = copy.deepcopy(Calc_result)
@@ -215,50 +162,7 @@ class myReport():
          for key,  value in self.Param_input.items():
             self.Param_input[key] = str(value)   
          print(self.Param_input )
-         
-    def print_word(self, word_file_path):
-        # 指示系统中文档的处理工具
-        # 指示运行的版本，如果是WPS应修改为
-        # 如果使用word
-        exec_tool = 'Word.Application'
-        # 如果使用wps
-        # exec_tool = 'wps.application'
-        word = win32com.client.Dispatch(exec_tool)
-        # 在后台运行程序
-        word.Visible = 0  # 后台运行，不显示
-        # 运行过程不警告
-        word.DisplayAlerts = 0  # 不警告
-        # 打开word文档
-        doc = word.Documents.Open(word_file_path)
-        # 进行打印
-        #doc.PrintOut()
-        doc.PrintPreview()
-        # --------------------------------------------------------
-        # -- 最后操作保存
-        # --------------------------------------------------------
-        # 关闭文件
-        #doc.Close()
-        # 退出word
-        #word.Quit()
-    def word2HTML(self):   
-        
-        html = PyDocX.to_html("C:\\Users\\Cliff\\Desktop\\压力起爆装置2020-11-10_134607.docx")
-        f = open("test.html", 'w', encoding="utf-8")
-        f.write(html)
-        print(f)
-        f.close()
-    def word2PDF(self):
-        word = client.DispatchEx("Word.Application")
-        doc = word.Documents.Open("C:\\Users\\Cliff\\Desktop\\压力起爆装置2020-11-10_134607.docx")
-        doc.SaveAs("C:\\Users\\Cliff\\Desktop\\压力起爆装置2020-11-10_134607.html", FileFormat = 8)
-        doc.Close()
-        
-    def wordRead(self):
-        path = "C:\\Users\\Cliff\\Desktop\\压力起爆装置2020-11-10_134607.html"
-        #doc = docx.getdocumenttext(self.file)
-        reader = QTextDocumentReader(path, 'HTML')
-        print(reader)
-        
+
     def GenerateHTML(self):    
         self.index = 0
         if float(self.Param_input['R']) == 0:
