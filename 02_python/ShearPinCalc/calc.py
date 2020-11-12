@@ -8,21 +8,23 @@ from docx.enum.text import WD_LINE_SPACING
 
 import copy
 import time
+import os
 
 from PyQt5.QtPrintSupport import  QPrinter, QPrintPreviewDialog
-from PyQt5.QtGui import QTextDocument
-from PyQt5.QtWidgets import QApplication
-
+from PyQt5.QtGui import QTextDocument, QPixmap
+from PyQt5.QtWidgets import QApplication,  QFileDialog
+import tempfile
+ 
 class myReport():
     def __init__(self):
         self.Param_result = { 'P1':0, 'P2':0, 'P':0,'p':0, 'S':0, 'S1':0, 'S2':0, 'n':0, 'N':0,'PMax':0, 'PMin':0 }
         self.Param_input  = { 'R':0,'No':0, 'h1':0, 'h2':0, 'h3':0, 'ρ1':0,'ρ2':0,'t':0, 'S0':0, 'P0':0 }
         self.type = "压力起爆装置"
         self.file = docx.Document()
-        #desktop = QDesktopWidget()
         desktop = QApplication.desktop()
         self.screen_width  = desktop.screenGeometry().width()
         self.screen_height = desktop.screenGeometry().height()
+        
     def GenerateWord(self):
         self.index = 0
         self.file=docx.Document()
@@ -90,8 +92,11 @@ class myReport():
     
         p = self.file.add_paragraph(str(self.index+3)+"、根据温度t查曲线，得剪切销值随温度降低百分率 δ = ") 
         run = p.add_run(self.Param_result['p']+u"%")
-        
-        self.file.add_picture('TempChart.png', width=Inches(4.5))
+       
+        myFile = QPixmap(":/myImages/TempChart.png")
+        with tempfile.TemporaryDirectory() as tmpdirname:
+            myFile.save(str(tmpdirname)+"\\TempChart.png")
+            self.file.add_picture(str(tmpdirname)+"\\TempChart.png", width=Inches(4.5))
         
         p = self.file.add_paragraph(str(self.index+4)+"、查剪切销合格证，得到剪切销在常温下的剪切值 S0 = ") 
         run = p.add_run(self.Param_input['S0']+u"（MPa）")
@@ -128,20 +133,18 @@ class myReport():
         p = self.file.add_paragraph(u" ") 
         p = self.file.add_paragraph(u"工程师签名：                       甲方负责人：") 
         p = self.file.add_paragraph(u" ") 
-        p = self.file.add_paragraph(u"年    月    日                    年    月    日") 
+        p = self.file.add_paragraph(u"年    月    日                    年    月    日      ") 
         p.alignment = WD_PARAGRAPH_ALIGNMENT.RIGHT
 
     def Save(self):    
         #保存
         curTime = time.strftime("%Y-%m-%d_%H%M%S", time.localtime())
-        self.file.save("C:\\Users\\Cliff\\Desktop\\" +self.type+curTime+".docx")
-        
-    def printPreview(self):
-        #self.file.print(printer)
-        self.print_word("C:\\Users\\Cliff\\Desktop\\压力起爆装置2020-11-10_134607.docx")
+        file_path =  QFileDialog.getSaveFileName(None,"save file",os.getcwd()+"\\" +self.type+curTime+".docx", filter  ="docx(*.docx)|doc(*.doc)")
+        if file_path[0] != "":
+            self.file.save(file_path[0])
         
     def Print(self):
-        print ("print Preview")
+        #print ("print Preview")
         printer = QPrinter(QPrinter.HighResolution)
         preview = QPrintPreviewDialog(printer)
         
@@ -161,7 +164,7 @@ class myReport():
             self.Param_result[key] = str(value)
          for key,  value in self.Param_input.items():
             self.Param_input[key] = str(value)   
-         print(self.Param_input )
+         #print(self.Param_input )
 
     def GenerateHTML(self):    
         self.index = 0
@@ -175,11 +178,12 @@ class myReport():
         htmldoc =""
         htmldoc +='''<!DOCTYPE html> \n<html> \n<head>\n<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> \
         \n<title>报告打印预览</title>\n<style type="text/css"> \nh1 {color:red; font-size:22pt; font-family:"宋体"} \
-        \np {color:balck;font-size:12pt; font-family:"宋体";line-height:1}\n</style>\n</head> \n<body>'''
+        \np {color:balck;font-size:12pt; font-family:"宋体";margin:5px}\n</style>\n</head> \n<body>'''#line-height:1;
 
         htmldoc +='''\n<h1 align="center">'''
-        htmldoc +=self.type+'''-剪切销数量设计报告</h1>\n<p align="left"> <br /> </p>\n'''
-        htmldoc +='''<p align="center">起爆装置型号：'''+self.name +"井号："+self.Param_input['No']+'''</p>\n'''
+        htmldoc +=self.type+'''-剪切销数量设计报告</h1>\n'''#<p align="left"> <br /> </p>\n'''
+        htmldoc +='''<p align="center">起爆装置型号：'''+self.name +"&nbsp;&nbsp;&nbsp;井号："+self.Param_input['No']+'''</p>\n'''
+        #htmldoc +='''<p align="center">井号：'''+self.Param_input['No']+"&nbsp;&nbsp;&nbsp;起爆装置型号："+self.name +'''</p>\n'''
         htmldoc +='''<p align="center">日期：'''+str(time.strftime('%Y{y}%m{m}%d{d}').format(y='年', m='月', d='日'))+'''</p>\n<p align="left"> <br /> </p>\n'''
         
         if float(self.Param_input['R']) == 0:
@@ -216,7 +220,8 @@ class myReport():
         htmldoc +='''<p align="left">'''+str(self.index+3)+"、根据温度t查曲线，得剪切销值随温度降低百分率 δ ="
         htmldoc +=self.Param_result['p']+'''%</p>\n'''  
         
-        htmldoc += '''<p align="center"><img width=432 height=253 src="C:\\Users\\Cliff\\Desktop\\image001.png"></p>\n'''
+        #htmldoc += '''<p align="center"><img width=340 height=200 src="C:\\Users\\Cliff\\Desktop\\image001.png"></p>\n'''
+        htmldoc += '''<p align="center"><img width=340 height=200 src=:/myImages/TempChart.png></p>\n'''
         
         htmldoc += '''<p align="left">'''+str(self.index+4)+"、查剪切销合格证，得到剪切销在常温下的剪切值 S0 ="
         htmldoc +=self.Param_input['S0']+'''（MPa）</p>\n'''  
@@ -240,9 +245,10 @@ class myReport():
         htmldoc +=self.Param_result['PMin']+'''（MPa）</p>\n''' 
         
         htmldoc +='''<p align="left"> <br /> </p> \n <p align="left"> <br /> </p>\n'''
-        htmldoc +='''<p align="left">工程师签名：                       甲方负责人：</p>	\n'''
+        htmldoc +='''<p align="left">工程师签名：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;甲方负责人：</p>	\n'''
         htmldoc +='''<p align="left"> <br /> </p> \n'''
-        htmldoc +='''<p align="right">年    月    日                    年    月    日</p>\n'''      
+        htmldoc +='''<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;年&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;日 \
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;年&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;日</p>\n'''      
         htmldoc +='''</body>\n</html> '''
        
        #print(htmldoc)

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project ShearPinCalc -->
-<!-- Saved: 2020-11-09, 17:37:32 -->
+<!-- Saved: 2020-11-11, 20:36:52 -->
 <!-- Copyright (C) 2020 ,  -->
 <Project version="5.1">
   <Language>en_US</Language>
@@ -16,13 +16,15 @@
     <Source>Ui_MainWindow.py</Source>
     <Source>__init__.py</Source>
     <Source>calc.py</Source>
+    <Source>images_rc.py</Source>
+    <Source>myImages_rc.py</Source>
     <Source>myMainWindow.py</Source>
   </Sources>
   <Forms>
     <Form>MainWindow.ui</Form>
   </Forms>
   <Resources>
-    <Resource>images.qrc</Resource>
+    <Resource>myImages.qrc</Resource>
   </Resources>
   <Vcs>
     <VcsType>None</VcsType>

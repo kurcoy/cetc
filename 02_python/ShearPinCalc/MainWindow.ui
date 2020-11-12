@@ -197,7 +197,7 @@
        <enum>Qt::NoFocus</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -236,8 +236,11 @@
                <height>25</height>
               </size>
              </property>
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
+             </property>
              <property name="text">
-              <string>1</string>
+              <string/>
              </property>
             </widget>
            </item>
@@ -278,8 +281,11 @@
                <height>25</height>
               </size>
              </property>
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly|Qt::ImhPreferNumbers</set>
+             </property>
              <property name="text">
-              <string>30</string>
+              <string/>
              </property>
             </widget>
            </item>
@@ -308,8 +314,11 @@
                <height>25</height>
               </size>
              </property>
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly|Qt::ImhPreferNumbers</set>
+             </property>
              <property name="text">
-              <string>20</string>
+              <string>8</string>
              </property>
             </widget>
            </item>
@@ -415,8 +424,11 @@
                <pointsize>12</pointsize>
               </font>
              </property>
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly|Qt::ImhPreferNumbers</set>
+             </property>
              <property name="text">
-              <string>2</string>
+              <string/>
              </property>
             </widget>
            </item>
@@ -475,8 +487,11 @@
                <pointsize>12</pointsize>
               </font>
              </property>
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly|Qt::ImhPreferNumbers</set>
+             </property>
              <property name="text">
-              <string>65</string>
+              <string/>
              </property>
             </widget>
            </item>
@@ -517,8 +532,11 @@
                <pointsize>12</pointsize>
               </font>
              </property>
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly|Qt::ImhPreferNumbers</set>
+             </property>
              <property name="text">
-              <string>25</string>
+              <string/>
              </property>
             </widget>
            </item>
@@ -577,8 +595,11 @@
                <pointsize>12</pointsize>
               </font>
              </property>
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly|Qt::ImhPreferNumbers</set>
+             </property>
              <property name="text">
-              <string>45</string>
+              <string/>
              </property>
             </widget>
            </item>
@@ -619,8 +640,11 @@
                <pointsize>12</pointsize>
               </font>
              </property>
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly|Qt::ImhPreferNumbers</set>
+             </property>
              <property name="text">
-              <string>35</string>
+              <string>8</string>
              </property>
             </widget>
            </item>
@@ -679,8 +703,11 @@
                <pointsize>12</pointsize>
               </font>
              </property>
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly|Qt::ImhPreferNumbers</set>
+             </property>
              <property name="text">
-              <string>55</string>
+              <string/>
              </property>
             </widget>
            </item>
@@ -744,8 +771,11 @@
             <pointsize>12</pointsize>
            </font>
           </property>
+          <property name="inputMethodHints">
+           <set>Qt::ImhDigitsOnly|Qt::ImhPreferNumbers</set>
+          </property>
           <property name="text">
-           <string>5</string>
+           <string>3.67</string>
           </property>
          </widget>
         </item>
@@ -837,8 +867,11 @@
             <pointsize>12</pointsize>
            </font>
           </property>
+          <property name="inputMethodHints">
+           <set>Qt::ImhDigitsOnly|Qt::ImhPreferNumbers</set>
+          </property>
           <property name="text">
-           <string>45</string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -917,7 +950,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="output_1">
+         <widget class="QLabel" name="output_1">
           <property name="minimumSize">
            <size>
             <width>168</width>
@@ -930,8 +963,14 @@
             <pointsize>12</pointsize>
            </font>
           </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
           <property name="text">
-           <string>15</string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -1059,7 +1098,7 @@
         </property>
         <property name="minimumSize">
          <size>
-          <width>130</width>
+          <width>150</width>
           <height>10</height>
          </size>
         </property>
@@ -1076,7 +1115,7 @@
          </font>
         </property>
         <property name="text">
-         <string>剪数量值（颗）：</string>
+         <string>剪切销数量值（颗）：</string>
         </property>
        </widget>
       </item>
@@ -1625,8 +1664,14 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>23</height>
+     <height>19</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>SimSun-ExtB</family>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <widget class="QMenu" name="menu">
     <property name="title">
@@ -1657,7 +1702,6 @@
     <property name="title">
      <string>帮助</string>
     </property>
-    <addaction name="ShortCut"/>
     <addaction name="About"/>
    </widget>
    <addaction name="menu"/>
@@ -1712,7 +1756,7 @@
   </action>
  </widget>
  <resources>
-  <include location="images.qrc"/>
+  <include location="myImages.qrc"/>
  </resources>
  <connections/>
 </ui>
