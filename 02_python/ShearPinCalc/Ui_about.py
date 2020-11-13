@@ -29,7 +29,7 @@ class Ui_AboutDialog(object):
     def retranslateUi(self, AboutDialog):
         _translate = QtCore.QCoreApplication.translate
         AboutDialog.setWindowTitle(_translate("AboutDialog", "软件帮助"))
-        self.label.setText(_translate("AboutDialog", "<html><head/><style type=\"text/css\">p{color:balck;font-size:10pt; font-family:\"宋体\";margin:5px}\\n</style><body><p>快捷键 </p><p>进制 ---- Art+M   计算 ---- Art+C   </p><p>输出 ---- Art+W   打印 ---- Art+P  </p><p><br/></p><p>剪切销计算器 1.0（测试版） </p><p>川南航天能源科技有限公司 版权所有！</p></body></html>"))
+        self.label.setText(_translate("AboutDialog", "<html><head/><style type=\"text/css\">p{color:balck;font-size:10pt; font-family:\"宋体\";margin:5px}\\n</style><body><p>快捷键 </p><p>进制 ---- Art+M   计算 ---- Art+C   </p><p>输出 ---- Art+W   打印 ---- Art+P  </p><p><br/></p><p>起爆装置剪切销计算器 1.0（测试版） </p><p>川南航天能源科技有限公司 版权所有！</p></body></html>"))
 
 
 if __name__ == "__main__":

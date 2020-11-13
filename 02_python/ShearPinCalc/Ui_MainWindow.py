@@ -661,7 +661,7 @@ class Ui_WindowObject(object):
 
     def retranslateUi(self, WindowObject):
         _translate = QtCore.QCoreApplication.translate
-        WindowObject.setWindowTitle(_translate("WindowObject", "剪切销计算"))
+        WindowObject.setWindowTitle(_translate("WindowObject", "起爆装置剪切销计算"))
         self.label.setText(_translate("WindowObject", "井号"))
         self.input_1.setText(_translate("WindowObject", "99"))
         self.label_5.setText(_translate("WindowObject", " 井液密度（g/cm3）   "))
@@ -689,10 +689,10 @@ class Ui_WindowObject(object):
         self.label_18.setText(_translate("WindowObject", "最大加压（MPa）："))
         self.label_19.setText(_translate("WindowObject", "最小加压（MPa）："))
         self.label_2.setText(_translate("WindowObject", "川南航天能源科技有线公司 http://wwww.cetc.oil.com"))
-        self.menu.setTitle(_translate("WindowObject", "单位制"))
-        self.menu_2.setTitle(_translate("WindowObject", "计算"))
-        self.menu_3.setTitle(_translate("WindowObject", "输出"))
-        self.menu_4.setTitle(_translate("WindowObject", "打印"))
+        self.menu.setTitle(_translate("WindowObject", "单位制(M)"))
+        self.menu_2.setTitle(_translate("WindowObject", "计算(C)"))
+        self.menu_3.setTitle(_translate("WindowObject", "输出(W)"))
+        self.menu_4.setTitle(_translate("WindowObject", "打印(P)"))
         self.menu_5.setTitle(_translate("WindowObject", "帮助"))
         self.Metric.setText(_translate("WindowObject", "公制"))
         self.Metric.setShortcut(_translate("WindowObject", "Alt+M"))

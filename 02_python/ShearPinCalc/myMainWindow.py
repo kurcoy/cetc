@@ -50,7 +50,7 @@ class myWindow(QtWidgets.QMainWindow, Ui_WindowObject):
         self.input_9.setValidator((QRegExpValidator(regExp,self)))
         
         self.__calValueList = list(range(0, 9))
-        self.__tabOrderList =  [ self.input_1, self.input_2, self.input_3,self.input_4,self.input_11, self.input_12 ]
+        self.__tabOrderList =  [ self.input_1, self.input_2,self.input_4, self.input_3,self.input_11, self.input_12 ]
         self.__tabOrdercurr = 0
         self.__tabNumber = 6  
         self.__tabOrderList[0].setFocus()
@@ -68,12 +68,12 @@ class myWindow(QtWidgets.QMainWindow, Ui_WindowObject):
         
         self.tabWidget.setCurrentIndex(0)
         self.Metric.setEnabled(False)
-    
+        self.MetricEanbled = 1
     def eventFilter(self, source, event):    
             if source in self._monitorList: 
                 if event.type() == QtCore.QEvent.KeyPress: 
                     key = event.key()
-                    if key == QtCore.Qt.Key_Return:
+                    if key == QtCore.Qt.Key_Return or key == QtCore.Qt.Key_Enter :
                         #self.input_1.setText("测试")
                         print("test is running")
                         self.__tabOrdercurr =self.__tabOrderList.index(source)           
@@ -83,10 +83,14 @@ class myWindow(QtWidgets.QMainWindow, Ui_WindowObject):
                             self.__tabOrdercurr = 1
                             self.On_Calculation_Clicked()
                         self.__tabOrderList[self.__tabOrdercurr].setFocus()
-                        
+                        self.__tabOrderList[self.__tabOrdercurr].selectAll()
                         if source == self.input_4 or source == self.input_6: 
                             if source.text() != "":
-                                self.input_12.setText(str(self.groudTemp + float( source.text())/100*4))
+                                if self.MetricEanbled == 1:
+                                    metricFactor = 1
+                                else:
+                                    metricFactor = self.meter2ft
+                                self.input_12.setText(str(format(self.groudTemp + float( source.text())/100*4/metricFactor, '.2f')))
                         
             return QtWidgets.QMainWindow.eventFilter(self, source, event) 
          
@@ -103,7 +107,7 @@ class myWindow(QtWidgets.QMainWindow, Ui_WindowObject):
             self.__tabNumber = 6
             self.Calc_input['R'] = 0
             self.input_11.setText(str(self.YB_ShearPin_Default ))
-            self.__tabOrderList = [ self.input_1, self.input_2, self.input_3,self.input_4,self.input_11, self.input_12 ]
+            self.__tabOrderList = [ self.input_1, self.input_2, self.input_4,self.input_3,self.input_11, self.input_12 ]
             self.YB_Shear_CalcInit( )
             #print('index:',self.tabWidget.currentIndex())
         else:
@@ -224,6 +228,7 @@ class myWindow(QtWidgets.QMainWindow, Ui_WindowObject):
         
         self.Metric.setEnabled(False)
         self.Imperial.setEnabled(True)
+        self.MetricEanbled = 1
         
     def UnitSwitch_2Imperial(self):   
         for i in range(0, 4):
@@ -247,6 +252,7 @@ class myWindow(QtWidgets.QMainWindow, Ui_WindowObject):
 
         self.Metric.setEnabled(True)
         self.Imperial.setEnabled(False)
+        self.MetricEanbled = 0
         
     def SetOpacity(self):    
         op = QtWidgets.QGraphicsOpacityEffect()
