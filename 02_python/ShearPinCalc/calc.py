@@ -69,7 +69,7 @@ class myReport():
             p.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
             p = self.file.add_paragraph(u"ρ -- "+self.Param_input['ρ1']+u"（g/cm3）	g -- 0.0098")
             p.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
-            self.index = 1
+            self.index = 0
         else: 
             p = self.file.add_paragraph(str(self.index+1)+u"、确定压差起爆装置的垂直深度 h1 = "+self.Param_input['h1']+u"（m）")#  style='List Number')
             p = self.file.add_paragraph(u"套管内液体产生的压力P1 = h1×ρ1×g= "+self.Param_result['P1']+u"（MPa）") 
@@ -139,7 +139,8 @@ class myReport():
     def Save(self):    
         #保存
         curTime = time.strftime("%Y-%m-%d_%H%M%S", time.localtime())
-        file_path =  QFileDialog.getSaveFileName(None,"save file",os.getcwd()+"\\" +self.type+curTime+".docx", filter  ="docx(*.docx)|doc(*.doc)")
+        file_name = os.getcwd()+"\\" + self.Param_input['No']+" "+self.type+"计算"+curTime+".docx"
+        file_path =  QFileDialog.getSaveFileName(None,"save file",file_name, filter  ="docx(*.docx)|doc(*.doc)")
         if file_path[0] != "":
             self.file.save(file_path[0])
         
@@ -187,7 +188,7 @@ class myReport():
         htmldoc =""
         htmldoc +='''<!DOCTYPE html> \n<html> \n<head>\n<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> \
         \n<title>报告打印预览</title>\n<style type="text/css"> \nh1 {color:red; font-size:22pt; font-family:"宋体"} \
-        \np {color:balck;font-size:12pt; font-family:"宋体";margin:5px}\n</style>\n</head> \n<body>'''#line-height:1;
+        \np {color:balck;font-size:12pt; font-family:"宋体";margin:3px}\n</style>\n</head> \n<body>'''#line-height:1;
 
         htmldoc +='''\n<h1 align="center">'''
         htmldoc +=self.type+'''-剪切销数量设计报告</h1>\n'''#<p align="left"> <br /> </p>\n'''
@@ -230,7 +231,7 @@ class myReport():
         htmldoc +=self.Param_result['p']+'''%</p>\n'''  
         
         #htmldoc += '''<p align="center"><img width=340 height=200 src="C:\\Users\\Cliff\\Desktop\\image001.png"></p>\n'''
-        htmldoc += '''<p align="center"><img width=340 height=200 src=:/myImages/TempChart.png></p>\n'''
+        htmldoc += '''<p align="left"><img width=450 height=260 src=:/myImages/TempChart.png></p>\n'''
         
         htmldoc += '''<p align="left">'''+str(self.index+4)+"、查剪切销合格证，得到剪切销在常温下的剪切值 S0 ="
         htmldoc +=self.Param_input['S0']+'''（MPa）</p>\n'''  
