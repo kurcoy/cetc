@@ -32,7 +32,7 @@ class myWindow(QtWidgets.QMainWindow, Ui_WindowObject):
         self.groudTemp = 25
         
         self._monitorList = [self.input_1, self.input_2, self.input_3, self.input_4, self.input_5, self.input_6, self.input_7, self.input_8, self.input_9, self.input_10, self.input_11, self.input_12]
-        regExp=QtCore.QRegExp('^\0|[1-9]\\d{0,4}\\.\\d{1,2}$') 
+        regExp=QtCore.QRegExp('^\0|[0-9]\\d{0,4}\\.\\d{1,2}$') 
         
         for i in range(0, 12):
             self._monitorList[i].installEventFilter(self) 
@@ -44,10 +44,12 @@ class myWindow(QtWidgets.QMainWindow, Ui_WindowObject):
         self.input_5.setValidator((QRegExpValidator(regExp,self)))
         self.input_7.setValidator((QRegExpValidator(regExp,self)))
         regExp=QtCore.QRegExp('^\0|[1-5]\\d{0,2}\\.\\d{1,2}$') 
+        
         self.input_12.setValidator((QRegExpValidator(regExp,self)))
         regExp=QtCore.QRegExp('^\0|[1-9]\\d{0,1}\\.\\d{1,2}$') 
         self.input_3.setValidator((QRegExpValidator(regExp,self)))
         self.input_9.setValidator((QRegExpValidator(regExp,self)))
+        self.input_11.setValidator((QRegExpValidator(regExp,self)))
         
         self.__calValueList = list(range(0, 9))
         self.__tabOrderList =  [ self.input_1, self.input_2,self.input_4, self.input_3,self.input_11, self.input_12 ]
@@ -123,8 +125,8 @@ class myWindow(QtWidgets.QMainWindow, Ui_WindowObject):
         
         self.Calc_input['ρ1']= self.__calValueList[1]
         self.Calc_input['ρ2']= 0
-        self.Calc_input['P0']= self.__calValueList[2]
-        self.Calc_input['h1']= self.__calValueList[3]
+        self.Calc_input['h1']= self.__calValueList[2]
+        self.Calc_input['P0']= self.__calValueList[3]
         self.Calc_input['h2']= 0
         self.Calc_input['h3']= 0
         self.Calc_input['S0']= self.__calValueList[4]

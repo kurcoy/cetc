@@ -41,6 +41,7 @@ class Ui_WindowObject(object):
         font.setFamily("宋体")
         font.setPointSize(12)
         self.input_1.setFont(font)
+        self.input_1.setText("")
         self.input_1.setPlaceholderText("")
         self.input_1.setObjectName("input_1")
         self.horizontalLayout_7.addWidget(self.input_1)
@@ -663,7 +664,6 @@ class Ui_WindowObject(object):
         _translate = QtCore.QCoreApplication.translate
         WindowObject.setWindowTitle(_translate("WindowObject", "起爆装置剪切销计算"))
         self.label.setText(_translate("WindowObject", "井号"))
-        self.input_1.setText(_translate("WindowObject", "99"))
         self.label_5.setText(_translate("WindowObject", " 井液密度（g/cm3）   "))
         self.label_22.setText(_translate("WindowObject", "起爆装置垂深（m）"))
         self.label_10.setText(_translate("WindowObject", "   安全加压（MPa）   "))
