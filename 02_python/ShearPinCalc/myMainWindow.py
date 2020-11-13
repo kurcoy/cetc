@@ -60,11 +60,11 @@ class myWindow(QtWidgets.QMainWindow, Ui_WindowObject):
         self.Calc_result ={ 'P1':0, 'P2':0, 'P':0,'p':0, 'S':0, 'S1':0, 'S2':0, 'n':0, 'N':0, 'PMax':0, 'PMin':0 }
         self.Calc_input  ={ 'R':0,'No':0, 'h1':0, 'h2':0, 'h3':0, 'ρ1':0,'ρ2':0,'t':0, 'S0':0, 'P0':0 }
         
-        self.meter2ft=3.2808 
-        self.mpa2psi=145.4
+        self.meter2ft=3.28083989501 
+        self.mpa2psi=145.037743897 
         
         self.dist  = [self.input_4, self.input_6,self.input_8,  self.input_10 ]
-        self.pres = [self.input_3, self.input_9,  self.output_3, self.output_4]
+        self.pres = [self.input_3, self.input_9, self.input_11,  self.output_3, self.output_4]
         
         self.tabWidget.setCurrentIndex(0)
         self.Metric.setEnabled(False)
@@ -93,6 +93,11 @@ class myWindow(QtWidgets.QMainWindow, Ui_WindowObject):
     def tabchange(self):
         self.__tabOrdercurr = 1
         self.__tabOrderList.clear()
+        
+        self.output_2.setText(str(""))
+        self.output_3.setText(str(""))
+        self.output_4.setText(str(""))
+            
         
         if self.tabWidget.currentIndex()==0:
             self.__tabNumber = 6
@@ -150,8 +155,8 @@ class myWindow(QtWidgets.QMainWindow, Ui_WindowObject):
         self.Calc_result['PMax'] = self.Calc_result['N'] *self.Calc_result['S1'] -self.Calc_result['P'] 
         self.Calc_result['PMin'] = self.Calc_result['N'] *self.Calc_result['S2'] -self.Calc_result['P']  
         
-        for key,  value in self.Calc_result.items():
-            self.Calc_result[key] = round(value, 2)
+        #for key,  value in self.Calc_result.items():
+        #    self.Calc_result[key] = round(value, 2)
         #print(self.Calc_result)
      
     def Update_Control_Value(self):
@@ -181,10 +186,10 @@ class myWindow(QtWidgets.QMainWindow, Ui_WindowObject):
             
             self.Shear_Calc()
             
-            self.output_2.setText(str(self.Calc_result['N']))
-            self.output_1.setText(str(self.Calc_result['p']))
-            self.output_3.setText(str(self.Calc_result['PMax']))
-            self.output_4.setText(str(self.Calc_result['PMin']))
+            self.output_2.setText(str(format(self.Calc_result['N'], '.2f')))
+            self.output_1.setText(str(format(self.Calc_result['p'], '.2f')))
+            self.output_3.setText(str(format(self.Calc_result['PMax'], '.2f')))
+            self.output_4.setText(str(format(self.Calc_result['PMin'], '.2f')))
 
     def On_Report_Clicked(self):
         self.On_Calculation_Clicked( )
@@ -200,9 +205,11 @@ class myWindow(QtWidgets.QMainWindow, Ui_WindowObject):
     def UnitSwitch_2Metric(self):   
         for i in range(0, 4):
             if self.dist[i].text() != "":
-                self.dist[i].setText(str(float(self.dist[i].text() )/self.meter2ft))
+                self.dist[i].setText(str(format(float(self.dist[i].text() )/self.meter2ft, '.2f')))
+        for i in range(0, 5):       
             if self.pres[i].text() != "":
-                self.pres[i].setText(str(float(self.pres[i].text() )/self.mpa2psi))
+                self.pres[i].setText(str(format(float(self.pres[i].text() )/self.mpa2psi, '.2f')))
+        
         self.label_18.setText("最大加压（MPa）：")
         self.label_19.setText("最小加压（MPa）：")
         
@@ -221,9 +228,11 @@ class myWindow(QtWidgets.QMainWindow, Ui_WindowObject):
     def UnitSwitch_2Imperial(self):   
         for i in range(0, 4):
             if self.dist[i].text() != "":
-                self.dist[i].setText(str(float(self.dist[i].text() )*self.meter2ft))
+                self.dist[i].setText(str(format(float(self.dist[i].text() )*self.meter2ft,'.2f')))
+        for i in range(0, 5):            
             if self.pres[i].text() != "":
-                self.pres[i].setText(str(float(self.pres[i].text() )*self.mpa2psi))
+                self.pres[i].setText(str(format(float(self.pres[i].text() )*self.mpa2psi, '.2f')))
+        
         self.label_18.setText("最大加压（psi）：")
         self.label_19.setText("最小加压（psi）：")
         

@@ -1714,15 +1714,16 @@
    <property name="text">
     <string>公制</string>
    </property>
+   <property name="shortcut">
+    <string>Alt+M</string>
+   </property>
   </action>
   <action name="Imperial">
    <property name="text">
     <string>英制</string>
    </property>
-  </action>
-  <action name="ShortCut">
-   <property name="text">
-    <string>快捷键</string>
+   <property name="shortcut">
+    <string>Alt+I</string>
    </property>
   </action>
   <action name="About">

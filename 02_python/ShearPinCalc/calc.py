@@ -161,10 +161,19 @@ class myReport():
          self.Param_input  = copy.deepcopy(Calc_input)
          self.Param_result = copy.deepcopy(Calc_result)
          for key,  value in self.Param_result.items():
-            self.Param_result[key] = str(value)
+            if type(value).__name__ == 'float':
+                self.Param_result[key] = str(format(value, '.2f'))
+            else:
+                self.Param_result[key] = str(value)
+            print(type(value))
          for key,  value in self.Param_input.items():
-            self.Param_input[key] = str(value)   
+             if type(value).__name__ == 'float':
+                self.Param_input[key] = str(format(value, '.2f'))
+             else:
+                self.Param_input[key] = str(value) 
          #print(self.Param_input )
+
+
 
     def GenerateHTML(self):    
         self.index = 0
@@ -221,7 +230,7 @@ class myReport():
         htmldoc +=self.Param_result['p']+'''%</p>\n'''  
         
         #htmldoc += '''<p align="center"><img width=340 height=200 src="C:\\Users\\Cliff\\Desktop\\image001.png"></p>\n'''
-        htmldoc += '''<p align="center"><img width=340 height=200 src=:/myImages/TempChart.png></p>\n'''
+        htmldoc += '''<p align="center"><img width=400 height=240 src=:/myImages/TempChart.png></p>\n'''
         
         htmldoc += '''<p align="left">'''+str(self.index+4)+"、查剪切销合格证，得到剪切销在常温下的剪切值 S0 ="
         htmldoc +=self.Param_input['S0']+'''（MPa）</p>\n'''  

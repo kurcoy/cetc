@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="myImages">
+    <file>CASC.png</file>
+    <file>TempChart.png</file>
+  </qresource>
+</RCC>
