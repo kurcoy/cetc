@@ -49,6 +49,7 @@ class myWindow(QtWidgets.QMainWindow, Ui_WindowObject):
         regExp=QtCore.QRegExp('^\0|[1-9]\\d{0,1}\\.\\d{1,2}$') 
         self.input_3.setValidator((QRegExpValidator(regExp,self)))
         self.input_9.setValidator((QRegExpValidator(regExp,self)))
+        regExp=QtCore.QRegExp('^\0|[1-9]\\d{0,1}\\.\\d{1,2}$') 
         self.input_11.setValidator((QRegExpValidator(regExp,self)))
         
         self.__calValueList = list(range(0, 9))
