@@ -196,11 +196,11 @@ class myReport():
         htmldoc +='''<p align="center">日期：'''+str(time.strftime('%Y{y}%m{m}%d{d}').format(y='年', m='月', d='日'))+'''</p>\n<p align="left"> <br /> </p>\n'''
         
         if float(self.Param_input['R']) == 0:
-            htmldoc +='''<p align="left">'''+str(self.index+1)+"、确定压力起爆装置的垂直深度 h1 ="
+            htmldoc +='''<p align="left">'''+str(self.index+1)+"、确定压力起爆装置的垂直深度 h ="
             htmldoc +=self.Param_input['h1']+'''（m）</p>\n'''
             htmldoc +='''<p align="center">'''+"活塞受到的压力为 P = h×ρ×g = "
             htmldoc +=self.Param_result['P']+'''  （MPa）</p>\n''' 
-            htmldoc +='''<p align="center">ρ1 --  '''
+            htmldoc +='''<p align="center">ρ --  '''
             htmldoc +=self.Param_input['ρ1']+''' （g/cm3）	g -- 0.0098</p>\n'''
             self.index = 0
         else:
@@ -230,7 +230,7 @@ class myReport():
         htmldoc +=self.Param_result['p']+'''%</p>\n'''  
         
         #htmldoc += '''<p align="center"><img width=340 height=200 src="C:\\Users\\Cliff\\Desktop\\image001.png"></p>\n'''
-        htmldoc += '''<p align="center"><img width=400 height=240 src=:/myImages/TempChart.png></p>\n'''
+        htmldoc += '''<p align="center"><img width=340 height=200 src=:/myImages/TempChart.png></p>\n'''
         
         htmldoc += '''<p align="left">'''+str(self.index+4)+"、查剪切销合格证，得到剪切销在常温下的剪切值 S0 ="
         htmldoc +=self.Param_input['S0']+'''（MPa）</p>\n'''  
