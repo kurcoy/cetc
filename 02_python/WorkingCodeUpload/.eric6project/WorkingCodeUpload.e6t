@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
+<!-- eric6 tasks file for project WorkingCodeUpload -->
+<!-- Saved: 2020-12-08, 14:16:21 -->
+<Tasks version="6.0">
+  <ProjectScanFilter></ProjectScanFilter>
+  <Task priority="1" completed="False" type="1" uid="{2d58f5f8-2bb5-4058-8645-b41aee1ef645}">
+    <Summary>TODO: combine these 3 methods into 1 - simplify &amp; make pythonic!</Summary>
+    <Description></Description>
+    <Created>2020-12-08, 11:40:38</Created>
+    <Resource>
+      <Filename>WorkingCodeUpload/CRCCCITT.py</Filename>
+      <Linenumber>64</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{44d67de8-51e0-4d3a-8590-8c48af4e0d19}">
+    <Summary>TODO: clean up - simplify this!</Summary>
+    <Description></Description>
+    <Created>2020-12-08, 11:40:38</Created>
+    <Resource>
+      <Filename>WorkingCodeUpload/CRCCCITT.py</Filename>
+      <Linenumber>85</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{bdf8bb90-bea7-4876-9003-168a080a19f4}">
+    <Summary>TODO: handle string-data also!</Summary>
+    <Description></Description>
+    <Created>2020-12-08, 11:40:38</Created>
+    <Resource>
+      <Filename>WorkingCodeUpload/CRCCCITT.py</Filename>
+      <Linenumber>86</Linenumber>
+    </Resource>
+  </Task>
+</Tasks>
