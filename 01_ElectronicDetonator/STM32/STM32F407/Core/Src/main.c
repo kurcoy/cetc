@@ -20,10 +20,10 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "ManchesterCode.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "ManchesterCode.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -113,10 +113,16 @@ int main(void)
   //HAL_GPIO_WritePin(GPIOE, GPIO_PIN_0, GPIO_PIN_SET);
   HAL_TIM_Base_Start_IT(&htim6);
   HAL_Delay(1000);
-  uint8_t dataSend[25] = {0XCC, 0x37, 0x33, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x31, 0x01,
+  uint8_t dataSend[25] = {0X88, 0x33, 0x00, 0x55, 0x50, 0x60, 0x70, 0x80, 0x90, 0xa0, 0x30, 0x30, 0x30, 0x31, 0x01,
   							  0x00, 0x00, 0x00, 0x00, 0x00, 0xBB, 0xCC, 0xDD, 0xEE, 0xAA};
   uint8_t dataLens = 25;
   //DiffManchester_SendData   (dataSend, 25);
+
+  //uint8_t TMR1H = 0x07;
+  //uint8_t TMR1L = 0xD9;
+  //uint16_t timval = (TMR1H<<8) | (TMR1L);
+  //timval = timval /10;
+
   /* USER CODE END 2 */
  
  
@@ -134,7 +140,8 @@ int main(void)
 	//uint8_t dataSend[25] = {0X00, 0x37, 0x33, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x31, 0x01,
 	//						  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xEE, 0xAA};
 
-	DiffManchester_SendData   (dataSend, dataLens);
+	DiffManchester_SendData   (dataSend, 25);
+	//HAL_Delay(10);
 	DiffManchester_WaitForRead(  );
 
 
@@ -144,15 +151,13 @@ int main(void)
 		for( uint8_t j=0; j<dataLens; j++ )
 			printf( "%x ", data[j] );
 		printf( "\r\n");
-
 	}
     else
     {
     	printf("error\r\n");
     }
 
-	//HAL_Delay(500);
-
+	//HAL_Delay(5000);
 
   }
   /* USER CODE END 3 */
@@ -220,7 +225,7 @@ static void MX_TIM6_Init(void)
   htim6.Instance = TIM6;
   htim6.Init.Prescaler = 83;
   htim6.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim6.Init.Period = 125;
+  htim6.Init.Period = 130;
   htim6.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim6) != HAL_OK)
   {
@@ -319,27 +324,37 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOE_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
-  __HAL_RCC_GPIOE_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
- // HAL_GPIO_WritePin(GPIOE, GPIO_PIN_0, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_4, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_0, GPIO_PIN_SET);
+
+  /*Configure GPIO pins : PE4 PE0 */
+  GPIO_InitStruct.Pin = GPIO_PIN_4|GPIO_PIN_0;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PF0 */
+  GPIO_InitStruct.Pin = GPIO_PIN_0;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PA5 */
   GPIO_InitStruct.Pin = GPIO_PIN_5;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : PE0 */
-  GPIO_InitStruct.Pin = GPIO_PIN_0;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
@@ -368,12 +383,17 @@ void delay_us(uint16_t us)
 	HAL_TIM_Base_Stop(&htim7);
 }
 
+int8_t count = 0;
+
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	if(htim6.Instance == htim->Instance)
 	{
+		//HAL_GPIO_TogglePin( GPIOE,GPIO_PIN_4);
 		DiffManchester_ReadBit(  );
-		//HAL_GPIO_TogglePin( GPIOE, GPIO_PIN_0);
+
+		if (! count--) __HAL_TIM_DISABLE_IT(&htim6, TIM_IT_UPDATE);
+
 	}
 }
 
@@ -381,8 +401,16 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
   if(GPIO_Pin == GPIO_PIN_5)
   {
+
 	  DiffManchester_EnableRead( 1 );
-	  TIM6->CNT = 65;
+	  if( IS_IOSET(RX_PORT,RX_PIN) ) TIM6->CNT = 90;
+	  else                           TIM6->CNT = 35;
+
+	  count = 3;
+	  HAL_TIM_Base_Start_IT(&htim6);
+	  __HAL_TIM_CLEAR_FLAG(&htim6,TIM_FLAG_UPDATE);
+	  //HAL_GPIO_TogglePin( GPIOE,GPIO_PIN_4);
+
    }
 }
 /* USER CODE END 4 */
