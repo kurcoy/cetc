@@ -1,8 +1,0 @@
-[Files]
-src\main.c
-src\ManchesterCode.c
-src\ManchesterCode.h
-src\ManchesterInit.c
-src\ManchesterInit.h
-[Headers]
-[Documents]
